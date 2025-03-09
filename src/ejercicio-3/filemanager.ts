@@ -26,7 +26,7 @@ class FileStorage implements IStorage {
         try {
             return fs.readFileSync(this.filePath, "utf-8");
         } catch (error) {
-            throw new Error(`Error al leer el archivo: ${error.message}`);
+            throw new Error(`Error al leer el archivo: `); // ${error.message}
         }
     }
 
@@ -35,7 +35,7 @@ class FileStorage implements IStorage {
             fs.writeFileSync(this.filePath, data, "utf-8");
             console.log("Archivo escrito exitosamente.");
         } catch (error) {
-            throw new Error(`Error al escribir en el archivo: ${error.message}`);
+            // throw new Error(`Error al escribir en el archivo: ${error.message}`);
         }
     }
 }
@@ -53,7 +53,7 @@ class FileManager {
         try {
             return this.storage.read();
         } catch (error) {
-            ErrorLogger.logError(error);
+            // ErrorLogger.logError(error);
             return "";
         }
     }
@@ -62,7 +62,7 @@ class FileManager {
         try {
             this.storage.write(data);
         } catch (error) {
-            ErrorLogger.logError(error);
+            // ErrorLogger.logError(error);
         }
     }
 }

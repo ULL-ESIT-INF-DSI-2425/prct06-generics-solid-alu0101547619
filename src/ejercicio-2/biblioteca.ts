@@ -5,10 +5,17 @@ import { Disco } from './disco';
 export class BibliotecaMusical {
     private artistas: Artista[] = [];
 
+    /**
+     * Agrega un nuevo artista a la lista de artistas.
+     * @param artista El objeto de tipo `Artista` que se desea agregar a la lista.
+     */
     agregarArtista(artista: Artista): void {
         this.artistas.push(artista);
     }
 
+    /**
+     * Muestra la biblioteca de artistas con información general y detalles de su discografía.
+     */
     mostrarBiblioteca(): void {
         console.table(this.artistas.map(a => ({
             Nombre: a.nombre,
@@ -45,10 +52,20 @@ export class BibliotecaMusical {
         });
     }
 
+    /**
+     * Devuelve si una canción pertenece a un single.
+     * @param cancion La canción a verificar si pertenece a un single.
+     * @returns "Sí" si la canción es parte de un single, "No" si no lo es.
+     */
     mapSingle(cancion: Cancion): string {
         return cancion.single ? "Sí" : "No";
     }
 
+    /**
+     * Realiza una búsqueda de artistas, discos o singles según el filtro y dato proporcionados.
+     * @param filtro El tipo de filtro a aplicar ("artista", "disco", "single").
+     * @param dato El valor que se va a buscar según el filtro especificado.
+     */
     search(filtro: string, dato: string): void {
         this.artistas.filter(artista => {
             switch(filtro) {
@@ -82,6 +99,11 @@ export class BibliotecaMusical {
         });
     }
 
+    /**
+     * Devuelve el número de canciones en un disco o single.
+     * @param disc El nombre del disco o single cuyo número de canciones se desea obtener.
+     * @returns El número de canciones en el disco o single especificado. Si no se encuentra, devuelve 0.
+     */
     number_song(disc: string): number {
         for (const artista of this.artistas) {
             for (const item of artista.discografia) {
@@ -93,6 +115,11 @@ export class BibliotecaMusical {
         return 0;
     }
 
+    /**
+     * Devuelve la duración total de un disco o single.
+     * @param disc El nombre del disco o single cuya duración total se desea calcular.
+     * @returns La duración total del disco o single especificado en segundos. Si no se encuentra, devuelve 0.
+     */
     disc_dur(disc: string): number {
         let result = 0;
         this.artistas.forEach(artista => {
@@ -105,6 +132,11 @@ export class BibliotecaMusical {
         return result;
     }
 
+    /**
+     * Devuelve el número total de reproducciones de un disco o single.
+     * @param disc El nombre del disco o single cuyo número total de reproducciones se desea obtener.
+     * @returns El número total de reproducciones del disco o single especificado. Si no se encuentra, devuelve 0.
+     */
     disc_rep(disc: string): number {
         let result = 0;
         this.artistas.forEach(artista => {
@@ -116,4 +148,5 @@ export class BibliotecaMusical {
         });
         return result;
     }
+    
 }
