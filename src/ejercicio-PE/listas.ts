@@ -45,9 +45,9 @@ export class list<T> {
      * @param predicado Entidad a ver en la lista
      * @returns Lista filtrada
      */
-    filter(primera_lista: list<T>, predicado: (item: T) => boolean): T[]{
+    filter(predicado: (item: T) => boolean): T[]{
         let resultado: T[] = [];
-        primera_lista._mylist.forEach(element => {
+        this._mylist.forEach(element => {
           if (predicado(element)) resultado[resultado.length] = element;
         });
         return resultado;
@@ -69,18 +69,29 @@ export class list<T> {
 
     }
 
+    /**
+     * Metodo que retorna una lista con los ementos en orden inverso
+     * @returns Retorna la propia lista en orden inverso
+     */
+    reverse() {
+        let resultado: T[] = []; 
+        for (let i = this.mylist.length - 1; i >= 0; i--) {
+            resultado[resultado.length] = this.mylist[i];
+        }
+        return resultado;
+    }
+
+    /**
+     * Metodo que retorna una lista con la operacion a los elemtnos declarados
+     * @param func Funcion que se hara en cada elemento de la lista
+     * @param accum Acumulador necesario para realizar la reduccion
+     * @returns Retorna la lista con la operacion asociada
+     */
+    reduce(func: (accum: T, item: T) => T, accum: T) {
+        this._mylist.forEach(element => {
+            accum = func(accum, element);
+        });
+        return accum;
+    }
+
 }
-
-let mylist = new list<number>([2]);
-let hola: number[] = [1];
-let mylist2 = new list(hola);
-
-
-
-
-
-console.log("Segunda lista antes del append:", mylist2);
-mylist.append(mylist2);
-console.log("Segunda lista después del append:", mylist2);
-let mylist3 = mylist.concatenate(mylist2, mylist);
-console.log("Lista concatenada:", mylist3); 

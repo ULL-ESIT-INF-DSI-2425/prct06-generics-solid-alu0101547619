@@ -20,14 +20,13 @@ describe("list<T> Methods Test", () => {
         expect(result).toEqual([ 2, 4, 6, 1, 1, 2, 4, 6, 1, 2, 4, 6, 1 ]);
     });
 
-    it("push should add an element to the list", () => {
-        let result = mylist.filter(mylist2, );
-        expect(result).toEqual([2, 5])
-    });
-
 
     it("should search documentaries by name", () => {
     expect(mylist.lenght()).toBe(4);
+    });
+
+    it("should search documentaries by name", () => {
+        expect(mylist.reverse()).toStrictEqual([ 1, 6, 4, 2 ]);
     });
 
 });
