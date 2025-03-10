@@ -1,5 +1,3 @@
-import { get } from "http";
-
 export class list<T> {
     constructor(private _mylist: T[]) {};
 
